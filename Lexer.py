@@ -57,8 +57,8 @@ class lexer:
         self.commentEnd = compile('\*/')
         self.singleComment = compile('//')
         self.quotes = compile('[".*"][\'.*\']')
-        self.identifiers = compile("[a-zA-Z_][a-zA-Z_0-9]*")
-        self.numbers = compile("[0-9]+[.0-9]?[0-9]*")
+        self.identifiers = compile("^([a-zA-Z_][a-zA-Z_0-9]*)+$")
+        self.numbers = compile("^([0-9]+[\.0-9]?[0-9]*)+$")
         self.flag = False
         self.symcount = 69
 
@@ -119,6 +119,7 @@ class lexer:
                 return line
           
     def symCheck(self, word):
+        print("Here :", word)
         if(word in self.symbolTable):
             x = self.symbolTable[word]
             #print("Token: ",word,"\t",x[0],"\t",x[1])
